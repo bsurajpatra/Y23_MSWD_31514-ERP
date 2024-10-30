@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from './background.png'; 
+import backgroundImage from './background.png';
 
 const SignIn = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/home'); 
+    navigate('/pagelayout'); 
   };
 
   const containerStyle = {
@@ -17,7 +17,7 @@ const SignIn = () => {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundImage: `url(${backgroundImage})`, 
+    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundColor: '#f4f4f4',
@@ -42,7 +42,7 @@ const SignIn = () => {
   const buttonStyle = {
     width: '100%',
     padding: '12px',
-    backgroundColor: '#B31B1B', 
+    backgroundColor: '#B31B1B',
     color: 'white',
     border: 'none',
     borderRadius: '5px',
@@ -55,11 +55,12 @@ const SignIn = () => {
       <form onSubmit={handleSubmit} style={formStyle}>
         <div>
           <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             style={inputStyle}
+            required
           />
         </div>
         <div>
@@ -69,6 +70,7 @@ const SignIn = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={inputStyle}
+            required
           />
         </div>
         <button type="submit" style={buttonStyle}>Sign in</button>

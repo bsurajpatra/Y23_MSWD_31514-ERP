@@ -1,3 +1,4 @@
+// index.js or server.js
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -13,10 +14,11 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin:"*"
+  origin: "*"
 }));
 app.use(express.json());
 
+// Routes
 app.use('/api/users', userRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/faculties', facultyRoutes);

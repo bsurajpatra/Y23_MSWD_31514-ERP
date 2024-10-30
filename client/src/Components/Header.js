@@ -12,9 +12,9 @@ const Header = () => {
   };
 
   const lineStyle = {
-    height: '2px', // Height of the line
-    backgroundColor: '#B31B1B', // Line color
-    width: '100%', // Full width
+    height: '2px', 
+    backgroundColor: '#B31B1B', 
+    width: '100%', 
   };
 
   const upperBarStyle = {
@@ -24,15 +24,15 @@ const Header = () => {
     height: '30px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center', // Center the text
+    justifyContent: 'center', 
   };
 
   const logoContainerStyle = {
-    position: 'absolute', // Allow positioning independently
-    left: '10px', // Adjust this value for logo positioning
-    height: '100%', // Full height of the upper bar
+    position: 'absolute', 
+    left: '10px', 
+    height: '100%', 
     display: 'flex',
-    alignItems: 'center', // Center logo vertically
+    alignItems: 'center', 
   };
 
   const lowerBarStyle = {
@@ -45,9 +45,9 @@ const Header = () => {
   };
 
   const logoStyle = {
-    maxWidth: '150px', // Increased logo width
-    maxHeight: '100px', // Match logo height to upper bar height
-    marginRight: '10px', // Space between logo and title
+    maxWidth: '150px', 
+    maxHeight: '100px', 
+    marginRight: '10px', 
   };
 
   const headingStyle = {
@@ -58,15 +58,14 @@ const Header = () => {
 
   return (
     <header style={headerStyle}>
-      <div style={lineStyle}></div> {/* Line above the upper bar */}
+      <div style={lineStyle}></div> 
       <div style={upperBarStyle}>
         <div style={logoContainerStyle}>
-          <img src={KLUlogo} alt="KLU logo" style={logoStyle} /> {/* Logo positioned here */}
+          <img src={KLUlogo} alt="KLU logo" style={logoStyle} /> 
         </div>
         <h1 style={headingStyle}>Student Portal - <i>ERP</i></h1>
       </div>
       <div style={lowerBarStyle}>
-        {/* Optional additional content can go here */}
       </div>
     </header>
   );
