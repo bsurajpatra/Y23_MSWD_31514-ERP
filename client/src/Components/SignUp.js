@@ -2,35 +2,54 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import backgroundImage from './background.png';
 
-const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignUp = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
     try {
-      const response = await fetch('http://localhost:3001/api/auth/signin', {
+      const response = await fetch('http://localhost:3001/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
-        credentials: 'include',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        }),
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userEmail', email);
-        navigate('/dashboard'); 
+        navigate('/'); 
       } else {
-        setError(data.message || 'Login failed. Please check your credentials.');
+        setError(data.message || 'Registration failed. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -99,10 +118,33 @@ const SignIn = () => {
         {error && <div style={errorStyle}>{error}</div>}
         <div>
           <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleChange}
+            style={inputStyle}
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={handleChange}
+            style={inputStyle}
+            required
+          />
+        </div>
+        <div>
+          <input
             type="email"
+            name="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={handleChange}
             style={inputStyle}
             required
           />
@@ -110,18 +152,30 @@ const SignIn = () => {
         <div>
           <input
             type="password"
+            name="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleChange}
             style={inputStyle}
             required
           />
         </div>
-        <button type="submit" style={buttonStyle}>Sign in</button>
-        <Link to="/signup" style={linkStyle}>Don't have an account? Sign Up</Link>
+        <div>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            style={inputStyle}
+            required
+          />
+        </div>
+        <button type="submit" style={buttonStyle}>Sign Up</button>
+        <Link to="/" style={linkStyle}>Already have an account? Sign In</Link>
       </form>
     </section>
   );
 };
 
-export default SignIn;
+export default SignUp;

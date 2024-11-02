@@ -1,6 +1,6 @@
-// src/Components/MainRoutes.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Dashboard from './Dashboard'; 
 import Faculty from './Faculty';
 import Students from './Students';
 import Courses from './Courses';
@@ -11,6 +11,8 @@ import Assignments from './Assignments';
 export default function MainRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/faculty" element={<Faculty />} />
       <Route path="/students" element={<Students />} />
       <Route path="/courses" element={<Courses />} />

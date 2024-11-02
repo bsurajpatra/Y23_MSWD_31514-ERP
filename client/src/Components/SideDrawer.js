@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Drawer, List, ListItem, ListItemText } from '@mui/material';
-import Home from './Home';
-
+import Dashboard from './Dasboard';
 export default function SideDrawer() {
   const headerHeight = 64;
   const footerHeight = 64;
@@ -22,13 +21,13 @@ export default function SideDrawer() {
           position: 'fixed',
           overflowY: 'auto',
           backgroundColor: '#FFFFFF',
-          zIndex: 1100, // Lower than footer
+          zIndex: 1100,
         },
       }}
     >
-      <List sx={{ paddingTop: '16px' }}> {/* Add padding top to the List */}
+      <List sx={{ paddingTop: '16px' }}> 
         {[
-          { text: 'Home', path: '/home' },
+          { text: 'Dashboard', path: '/dashboard' },
           { text: 'Faculty', path: '/faculty' },
           { text: 'Students', path: '/students' },
           { text: 'Courses', path: '/courses' },
@@ -45,14 +44,14 @@ export default function SideDrawer() {
               backgroundColor: '#393e46',
               color: 'white',
               margin: '4px 0',
-              borderRadius: '0', // Square corners
+              borderRadius: '0', 
               width: '100%',
-              height: '50px', // Fixed height for a square look
+              height: '50px', 
               '&:hover': {
-                backgroundColor: '#393e46', // No color change on hover
+                backgroundColor: '#393e46', 
               },
               '& + &': {
-                borderTop: '0px solid white', // Thin white line above each button
+                borderTop: '0px solid white', 
               },
             }}
           >

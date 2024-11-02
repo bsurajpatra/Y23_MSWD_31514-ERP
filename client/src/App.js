@@ -1,13 +1,12 @@
 import React from 'react';
-import './App.css'; // Importing CSS file
-import { BrowserRouter as Router } from 'react-router-dom';
-import PageLayout from './Components/PageLayout';
+import { BrowserRouter } from 'react-router-dom';
+import LoginRouting from './Components/LoginRouting';
 
 function App() {
   return (
-    <Router>
-      <PageLayout/>
-    </Router>
+    <BrowserRouter>
+      <LoginRouting />
+    </BrowserRouter>
   );
 }
 
